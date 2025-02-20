@@ -1,0 +1,145 @@
+:root {
+    --primary-color: #EFF1F3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat','sans-serif';
+}
+body{
+    background-color: #272727;
+    color: whitesmoke;
+}
+.hints {
+    text-align: center;
+    padding: 1.4rem 0;
+    font-weight: 600;
+}
+.timeline-wrapper::-webkit-scrollbar{
+    display: none;
+}
+.timeline-wrapper{
+    position: relative;
+    max-width: 100vw;
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+.timeline{
+    position: absolute;
+    height: .12rem;
+    padding: 0 4rem;
+    list-style-type: none;
+    background-color: #FED766;
+
+    --scale: 1;
+
+    display:flex;
+}
+.timeline li{
+    width: 20rem;
+    position: relative;
+}
+.timeline li::before,
+.timeline li::after,
+.timeline li .title,
+.data {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(var(--scale));
+    transition: 0.5s ease;
+}
+.timeline li:before{
+    content: "";
+    top: 1rem;
+    display: inline-block;
+    width: 0.12rem;
+    height: 1rem;
+    background-color: #FED766;
+}
+.timeline li:nth-child(even)::before{
+    top: -1rem;
+}
+.timeline li:hover::before {
+    background-color: var(--primary-color);
+}
+.timeline li::after{
+    content: attr(data-date);
+    top: -3.4rem;
+}
+.timeline li:nth-child(odd)::after{
+    top: 3.4rem;
+}
+.timeline li:hover:after,
+.timeline li .title{
+    color: var(--primary-color);
+}
+.timeline li .title{
+    top: 2.4rem;
+    font: 600 1.1rem 'Montserrat','sans-serif';
+    white-space: pre;
+    opacity: 0;
+}
+.timeline li:nth-child(odd) >.title{
+    top: -2.4rem;
+}
+.timeline li:hover .title {
+    opacity:1;
+}
+
+.data{
+    width: 1.3rem;
+    height: 1.3rem;
+    background-color: #FED766;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    transition: .3s ease;
+}
+.timeline li:hover .data {
+    background-color: var(--primary-color);
+    --scale: 1.2;
+    cursor: pointer;
+    z-index: 200;
+}
+.data.show{
+    width: 22rem;
+    height: 22rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-image: linear-gradient(45deg, #262626, #4A5759);
+    box-shadow: 0 .1rem .4rem #0004;
+    z-index: 100;
+}
+.data h3{
+    text-transform: capitalize;
+    margin-left: 100rem;
+}
+.data p{
+    background-color: #4A5759;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-left: 100rem;
+}
+.data.show p,
+.data.show h3{
+    margin-left: 0;
+}
+.image-container{
+    height: 13rem;
+    width: 20rem;
+}
+.image-container img{
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
